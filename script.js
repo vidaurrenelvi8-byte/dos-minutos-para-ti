@@ -1,6 +1,6 @@
 const paginas = [
   {
-    titulo: "❤️ Dos minutos para ti",
+    titulo: "❤️ Dos minutos para ti - PRUEBA",
     texto: ["Antes de continuar con tu día...", "Regálate dos minutos.", "Respira.", "Y lee estas palabras con calma."]
   },
   {
