@@ -94,6 +94,7 @@ function mostrarPagina() {
   contenido.classList.remove("hojear");
 void contenido.offsetWidth;
 contenido.classList.add("hojear");
+ 
   numero.textContent = actual + 1;
 
   puntos.forEach(function(punto) {
