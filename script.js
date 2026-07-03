@@ -74,56 +74,37 @@ const paginas = [
     ]
   },
   {
-  titulo: "¿Qué necesitas hoy?",
-  botones: true
-}
+    titulo: "¿Qué necesitas hoy?",
     texto: [
       "Será un privilegio acompañarte.",
       "Elige una opción:"
     ],
     final: true
+  },
+  {
+    titulo: "Conocer más sobre Jesús",
+    texto: [
+      "Jesús no vino para crear una religión, vino para acercarnos a Dios.",
+      "Él conoce tus luchas, tus heridas y tus preguntas.",
+      "La Biblia dice: Porque de tal manera amó Dios al mundo, que ha dado a su Hijo unigénito. Juan 3:16",
+      "Jesús murió y resucitó para darte una nueva vida.",
+      "Puedes comenzar hablándole con tus propias palabras hoy mismo."
+    ]
+  },
+  {
+    titulo: "¿Dónde puedo congregarme?",
+    texto: [
+      "Arca de Noé - Iglesia para la Familia",
+      "Dirección: Barrio 30 de Agosto, a una cuadra de la Av. Moscú.",
+      "Horarios:",
+      "Sábado: 19:30 - 21:30",
+      "Domingo: 08:00 - 11:30 / 18:00 - 20:30",
+      "Ubicación: https://maps.app.goo.gl/1vkNxkM8aYV7ugtG9"
+    ],
+    mapa: true
   }
 ];
 
-{
-  titulo: "Conocer más sobre Jesús",
-  texto: `
-  Jesús no vino para crear una religión, vino para acercarnos a Dios.
-
-  Él conoce tus luchas, tus heridas y tus preguntas.
-
-  La Biblia dice:
-
-  "Porque de tal manera amó Dios al mundo, que ha dado a su Hijo unigénito..."
-  (Juan 3:16)
-
-  Jesús murió y resucitó para darte una nueva vida.
-
-  Puedes comenzar hablándole con tus propias palabras hoy mismo.
-  `
-},
-
-{
-  titulo: "¿Dónde puedo congregarme?",
-  texto: `
-Arca de Noé - Iglesia para la Familia
-
-Dirección:
-Barrio 30 de Agosto, a una cuadra de la Av. Moscú.
-
-Horarios:
-
-Sábado
-19:30 - 21:30
-
-Domingo
-08:00 - 11:30
-18:00 - 20:30
-
-Ubicación:
-https://maps.app.goo.gl/1vkNxkM8aYV7ugtG9
-`
-}
 let actual = 0;
 
 const contenido = document.getElementById("contenido");
@@ -133,9 +114,9 @@ const puntos = document.querySelectorAll(".punto");
 
 function mostrarPagina() {
   contenido.classList.remove("hojear");
-void contenido.offsetWidth;
-contenido.classList.add("hojear");
- 
+  void contenido.offsetWidth;
+  contenido.classList.add("hojear");
+
   numero.textContent = actual + 1;
 
   puntos.forEach(function(punto) {
@@ -153,53 +134,41 @@ contenido.classList.add("hojear");
   });
 
   if (paginas[actual].final) {
-   html += `
-  <div class="opciones">
+    html += `
+      <div class="opciones">
+        <button id="btnOracion" class="opcion">🙏 Quiero que oren por mí</button>
+        <button id="btnJesus" class="opcion">📖 Quiero conocer más sobre Jesús</button>
+        <button id="btnHablar" class="opcion">💬 Quiero hablar con alguien</button>
+        <button id="btnCongregarme" class="opcion">🏠 ¿Dónde puedo congregarme?</button>
+      </div>
+    `;
+  }
 
-    <button class="opcion">
-      🙏 Quiero que oren por mí
-    </button>
+  if (paginas[actual].mapa) {
+    html += `
+      <button id="btnMapa" class="opcion">📍 Abrir ubicación en Google Maps</button>
+    `;
+  }
 
-    <button class="opcion">
-      📖 Quiero conocer más sobre Jesús
-    </button>
-
-    <button class="opcion">
-      💬 Quiero hablar con alguien
-    </button>
-
-    <button class="opcion">
-      🏠 ¿Dónde puedo congregarme?
-    </button>
-
-  </div>
-`;
-  } 
- 
-  if (paginas[actual].final) {
-  html = `
-    <h2>¿Qué necesitas hoy?</h2>
-
-    <button id="btnOracion">🙏 Quiero que oren por mí</button>
-    <button id="btnJesus">📖 Quiero conocer más sobre Jesús</button>
-    <button id="btnHablar">💬 Quiero hablar con alguien</button>
-    <button id="btnCongregarme">🏠 ¿Dónde puedo congregarme?</button>
-  `;
-}
-  
   contenido.innerHTML = html;
 
   if (paginas[actual].final) {
-  document.getElementById("btnOracion").addEventListener("click", oracion);
-  document.getElementById("btnJesus").addEventListener("click", jesus);
-  document.getElementById("btnHablar").addEventListener("click", hablar);
-  document.getElementById("btnCongregarme").addEventListener("click", congregarme);
-}
-  
+    document.getElementById("btnOracion").addEventListener("click", oracion);
+    document.getElementById("btnJesus").addEventListener("click", jesus);
+    document.getElementById("btnHablar").addEventListener("click", hablar);
+    document.getElementById("btnCongregarme").addEventListener("click", congregarme);
+  }
+
+  if (paginas[actual].mapa) {
+    document.getElementById("btnMapa").addEventListener("click", abrirMapa);
+  }
+
   if (actual === 0) {
     boton.textContent = "Comenzar";
     boton.style.display = "inline-block";
   } else if (paginas[actual].final) {
+    boton.style.display = "none";
+  } else if (actual === paginas.length - 1) {
     boton.style.display = "none";
   } else {
     boton.textContent = "➡️ Continuar";
@@ -207,49 +176,12 @@ contenido.classList.add("hojear");
   }
 }
 
-mostrarPagina();
-
-const boton = document.getElementById("boton");
-boton.onclick = function () {
-  if (actual < paginas.length - 1) {
+boton.onclick = function() {
+  if (actual < 9) {
     actual++;
     mostrarPagina();
   }
 };
-
-function oracion() {
-
-  const mensaje =
-    "Hola. Escaneé el QR de Dos Minutos Para Ti y me gustaría que oren por mí.";
-
-  window.open(
-    "https://wa.me/59173626070?text=" +
-    encodeURIComponent(mensaje),
-    "_blank"
-  );
-}
-
-function hablar() {
-
-  const mensaje =
-    "Hola. Escaneé el QR de Dos Minutos Para Ti y me gustaría hablar con alguien.";
-
-  window.open(
-    "https://wa.me/59173626070?text=" +
-    encodeURIComponent(mensaje),
-    "_blank"
-  );
-}
-
-function jesus() {
-  actual = paginas.length - 2;
-  mostrarPagina();
-}
-
-function congregarme() {
-  actual = paginas.length - 1;
-  mostrarPagina();
-}
 
 function oracion() {
   const mensaje = "Hola. Escaneé el QR de Dos Minutos Para Ti y me gustaría que oren por mí.";
@@ -262,9 +194,17 @@ function hablar() {
 }
 
 function jesus() {
-  alert("Jesús te ama, conoce tu vida y quiere acercarte a Dios. Puedes hablar con Él con tus propias palabras.");
+  actual = 10;
+  mostrarPagina();
 }
 
 function congregarme() {
+  actual = 11;
+  mostrarPagina();
+}
+
+function abrirMapa() {
   window.open("https://maps.app.goo.gl/1vkNxkM8aYV7ugtG9", "_blank");
 }
+
+mostrarPagina();
