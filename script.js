@@ -111,6 +111,7 @@ const paginas = [
       "Domingo: 08:00 - 11:30 / 18:00 - 20:30",
       "Ubicación: https://maps.app.goo.gl/1vkNxkM8aYV7ugtG9"
     ],
+    tipo: "congregarme"
     mapa: true
   }
   
@@ -181,20 +182,33 @@ function mostrarPagina() {
     boton.style.display = "none";
   } else if (paginas[actual].tipo === "jesusFinal") {
   boton.style.display = "none";
-  } else if (actual === paginas.length - 1) {
+ } else if (paginas[actual].tipo === "jesusFinal") {
   boton.style.display = "none";
-  } else {
+} else if (paginas[actual].tipo === "congregarme") {
+  boton.style.display = "none";
+} else if (actual === paginas.length - 1) {
+  boton.style.display = "none";
+} else {
     boton.textContent = "➡️ Continuar";
     boton.style.display = "inline-block";
   }
 }
 
 boton.onclick = function() {
-  if (paginas[actual].tipo === "jesus1") {
-    actual = paginas.findIndex(pagina => pagina.tipo === "jesusFinal");
+  const paginaActual = paginas[actual];
+
+  if (paginaActual.tipo === "jesus1") {
+    actual = paginas.findIndex(p => p.tipo === "jesusFinal");
     mostrarPagina();
     return;
   }
+
+  if (actual < 9) {
+    actual++;
+    mostrarPagina();
+    return;
+  }
+};
 
   if (actual < 9) {
     actual++;
