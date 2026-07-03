@@ -82,6 +82,19 @@ const paginas = [
     final: true
   },
   {
+    titulo: "¿Dónde puedo congregarme?",
+    texto: [
+      "Arca de Noé - Iglesia para la Familia",
+      "Dirección: Barrio 30 de Agosto, a una cuadra de la Av. Moscú.",
+      "Horarios:",
+      "Sábado: 19:30 - 21:30",
+      "Domingo: 08:00 - 11:30 / 18:00 - 20:30",
+      "Ubicación: https://maps.app.goo.gl/1vkNxkM8aYV7ugtG9"
+    ],
+    tipo: "congregarme"
+    mapa: true
+  },
+  {
   titulo: "Conocer más sobre Jesús",
   texto: [
     "Jesús no vino para crear una religión vacía.",
@@ -100,19 +113,6 @@ const paginas = [
     "Dios te ama y quiere caminar contigo desde hoy."
   ],
   tipo: "jesusFinal"
-  },
-  {
-    titulo: "¿Dónde puedo congregarme?",
-    texto: [
-      "Arca de Noé - Iglesia para la Familia",
-      "Dirección: Barrio 30 de Agosto, a una cuadra de la Av. Moscú.",
-      "Horarios:",
-      "Sábado: 19:30 - 21:30",
-      "Domingo: 08:00 - 11:30 / 18:00 - 20:30",
-      "Ubicación: https://maps.app.goo.gl/1vkNxkM8aYV7ugtG9"
-    ],
-    tipo: "congregarme"
-    mapa: true
   }
   
 ];
