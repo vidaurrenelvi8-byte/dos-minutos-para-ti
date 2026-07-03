@@ -108,14 +108,27 @@ function mostrarPagina() {
   });
 
   if (paginas[actual].final) {
-    html += `
-      <div class="opciones">
-        <a href="#" class="opcion">🙏 Quiero que oren por mí</a>
-        <a href="#" class="opcion">📖 Quiero conocer más sobre Jesús</a>
-        <a href="#" class="opcion">💬 Quiero hablar con alguien</a>
-        <a href="#" class="opcion">🏠 ¿Dónde puedo congregarme?</a>
-      </div>
-    `;
+   html += `
+  <div class="opciones">
+
+    <button class="opcion">
+      🙏 Quiero que oren por mí
+    </button>
+
+    <button class="opcion">
+      📖 Quiero conocer más sobre Jesús
+    </button>
+
+    <button class="opcion">
+      💬 Quiero hablar con alguien
+    </button>
+
+    <button class="opcion">
+      🏠 ¿Dónde puedo congregarme?
+    </button>
+
+  </div>
+`;
   }
 
   contenido.innerHTML = html;
