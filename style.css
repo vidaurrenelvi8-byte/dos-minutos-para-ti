@@ -76,14 +76,41 @@ button{
 }
 
 .opcion{
-  text-decoration:none;
-  background:#f8f4ef;
-  color:#5b4b42;
-  padding:16px 20px;
-  border-radius:18px;
-  font-size:18px;
-  border:1px solid #e4ddd6;
-  transition:.3s;
+
+display:block;
+
+width:100%;
+
+background:#8b7c6c;
+
+color:white;
+
+padding:18px;
+
+border-radius:18px;
+
+font-size:18px;
+
+font-weight:600;
+
+text-decoration:none;
+
+text-align:center;
+
+transition:.3s;
+
+box-shadow:0 4px 12px rgba(0,0,0,.08);
+
+}
+
+.opcion:hover{
+
+background:#756858;
+
+transform:translateY(-3px);
+
+box-shadow:0 8px 18px rgba(0,0,0,.12);
+
 }
 
 .opcion:hover{
