@@ -83,6 +83,42 @@ const paginas = [
   }
 ];
 
+{
+  titulo: "Conocer más sobre Jesús",
+  texto: `
+  Jesús no vino para crear una religión, vino para acercarnos a Dios.
+
+  Él conoce tus luchas, tus heridas y tus preguntas.
+
+  La Biblia dice:
+
+  "Porque de tal manera amó Dios al mundo, que ha dado a su Hijo unigénito..."
+  (Juan 3:16)
+
+  Jesús murió y resucitó para darte una nueva vida.
+
+  Puedes comenzar hablándole con tus propias palabras hoy mismo.
+  `
+},
+
+{
+  titulo: "¿Dónde puedo congregarme?",
+  texto: `
+  Arca de Noé - Iglesia para la Familia
+
+  Dirección:
+  Barrio 30 de Agosto, a una cuadra de la Av. Moscú.
+
+  Horarios:
+
+  Sábado
+  19:30 - 21:30
+
+  Domingo
+  08:00 - 11:30
+  18:00 - 20:30
+  `
+}
 let actual = 0;
 
 const contenido = document.getElementById("contenido");
