@@ -174,21 +174,28 @@ contenido.classList.add("hojear");
 
   </div>
 `;
-  }
-  
- if (paginas[actual].final) {
+  } 
+ 
+  if (paginas[actual].final) {
   html = `
     <h2>¿Qué necesitas hoy?</h2>
 
-    <button onclick="oracion()">🙏 Quiero que oren por mí</button>
-    <button onclick="jesus()">📖 Quiero conocer más sobre Jesús</button>
-    <button onclick="hablar()">💬 Quiero hablar con alguien</button>
-    <button onclick="congregarme()">🏠 ¿Dónde puedo congregarme?</button>
+    <button id="btnOracion">🙏 Quiero que oren por mí</button>
+    <button id="btnJesus">📖 Quiero conocer más sobre Jesús</button>
+    <button id="btnHablar">💬 Quiero hablar con alguien</button>
+    <button id="btnCongregarme">🏠 ¿Dónde puedo congregarme?</button>
   `;
 }
- 
+  
   contenido.innerHTML = html;
 
+  if (paginas[actual].final) {
+  document.getElementById("btnOracion").addEventListener("click", oracion);
+  document.getElementById("btnJesus").addEventListener("click", jesus);
+  document.getElementById("btnHablar").addEventListener("click", hablar);
+  document.getElementById("btnCongregarme").addEventListener("click", congregarme);
+}
+  
   if (actual === 0) {
     boton.textContent = "Comenzar";
     boton.style.display = "inline-block";
@@ -241,4 +248,22 @@ function jesus() {
 function congregarme() {
   actual = paginas.length - 1;
   mostrarPagina();
+}
+
+function oracion() {
+  const mensaje = "Hola. Escaneé el QR de Dos Minutos Para Ti y me gustaría que oren por mí.";
+  window.open("https://wa.me/59173626070?text=" + encodeURIComponent(mensaje), "_blank");
+}
+
+function hablar() {
+  const mensaje = "Hola. Escaneé el QR de Dos Minutos Para Ti y me gustaría hablar con alguien.";
+  window.open("https://wa.me/59173626070?text=" + encodeURIComponent(mensaje), "_blank");
+}
+
+function jesus() {
+  alert("Jesús te ama, conoce tu vida y quiere acercarte a Dios. Puedes hablar con Él con tus propias palabras.");
+}
+
+function congregarme() {
+  window.open("https://maps.app.goo.gl/1vkNxkM8aYV7ugtG9", "_blank");
 }
