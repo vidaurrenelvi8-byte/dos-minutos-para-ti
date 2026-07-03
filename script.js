@@ -82,14 +82,24 @@ const paginas = [
     final: true
   },
   {
-    titulo: "Conocer más sobre Jesús",
-    texto: [
-      "Jesús no vino para crear una religión, vino para acercarnos a Dios.",
-      "Él conoce tus luchas, tus heridas y tus preguntas.",
-      "La Biblia dice: Porque de tal manera amó Dios al mundo, que ha dado a su Hijo unigénito. Juan 3:16",
-      "Jesús murió y resucitó para darte una nueva vida.",
-      "Puedes comenzar hablándole con tus propias palabras hoy mismo."
-    ]
+  titulo: "Conocer más sobre Jesús",
+  texto: [
+    "Jesús no vino para crear una religión vacía.",
+    "Él vino para acercarnos al corazón de Dios.",
+    "Vino a buscar al cansado, al herido, al que se siente lejos y al que necesita esperanza.",
+    "Jesús mostró amor, perdón y compasión a personas que muchos rechazaban."
+  ],
+  tipo: "jesus1"
+  },
+  {
+  titulo: "Jesús también te llama a ti",
+  texto: [
+    "La Biblia enseña que Jesús murió y resucitó para darnos vida nueva.",
+    "No necesitas tener palabras perfectas para acercarte a Él.",
+    "Puedes hablarle con sinceridad, pedirle que te guíe y abrirle tu corazón.",
+    "Dios te ama y quiere caminar contigo desde hoy."
+  ],
+  tipo: "jesusFinal"
   },
   {
     titulo: "¿Dónde puedo congregarme?",
@@ -102,16 +112,8 @@ const paginas = [
       "Ubicación: https://maps.app.goo.gl/1vkNxkM8aYV7ugtG9"
     ],
     mapa: true
-  },
-  {
-  titulo: "Gracias por llegar hasta aquí ❤️",
-  texto: [
-    "Esperamos que este pequeño mensaje haya tocado tu corazón.",
-    "Recuerda: no estás solo.",
-    "Dios te ama, te escucha y puede comenzar algo nuevo en tu vida desde hoy.",
-    "Que tengas un día lleno de paz."
-  ]
   }
+  
 ];
 
 let actual = 0;
@@ -177,16 +179,24 @@ function mostrarPagina() {
     boton.style.display = "inline-block";
   } else if (paginas[actual].final) {
     boton.style.display = "none";
- } else if (actual === paginas.length - 1) {
+  } else if (paginas[actual].tipo === "jesusFinal") {
   boton.style.display = "none";
-} else {
+  } else if (actual === paginas.length - 1) {
+  boton.style.display = "none";
+  } else {
     boton.textContent = "➡️ Continuar";
     boton.style.display = "inline-block";
   }
 }
 
 boton.onclick = function() {
-  if (actual < paginas.length - 1) {
+  if (paginas[actual].tipo === "jesus1") {
+    actual = paginas.findIndex(pagina => pagina.tipo === "jesusFinal");
+    mostrarPagina();
+    return;
+  }
+
+  if (actual < 9) {
     actual++;
     mostrarPagina();
   }
@@ -203,7 +213,7 @@ function hablar() {
 }
 
 function jesus() {
-  actual = 10;
+  actual = paginas.findIndex(pagina => pagina.tipo === "jesus1");
   mostrarPagina();
 }
 
