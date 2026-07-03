@@ -176,7 +176,7 @@ contenido.classList.add("hojear");
 `;
   }
   
- if (paginas[actual].botones) {
+ if (paginas[actual].final) {
   html = `
     <h2>¿Qué necesitas hoy?</h2>
 
