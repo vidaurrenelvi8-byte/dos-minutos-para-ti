@@ -82,10 +82,6 @@ const boton = document.getElementById("boton");
 const numero = document.getElementById("numeroPagina");
 
 function mostrarPagina() {
-  contenido.classList.remove("fade");
-  void contenido.offsetWidth;
-  contenido.classList.add("fade");
-
   numero.textContent = actual + 1;
 
   let html = "<h1>" + paginas[actual].titulo + "</h1>";
@@ -98,6 +94,8 @@ function mostrarPagina() {
 
   if (actual === paginas.length - 1) {
     boton.textContent = "Finalizar";
+  } else if (actual === 0) {
+    boton.textContent = "Comenzar";
   } else {
     boton.textContent = "📖 Pasar la página";
   }
