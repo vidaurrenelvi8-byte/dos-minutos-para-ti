@@ -175,6 +175,7 @@ contenido.classList.add("hojear");
   </div>
 `;
   }
+  
   if (paginas[actual].botones) {
 
   contenido.innerHTML = `
