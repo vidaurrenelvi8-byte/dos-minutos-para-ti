@@ -92,6 +92,15 @@ const paginas = [
     ]
   },
   {
+  titulo: "Gracias por llegar hasta aquí ❤️",
+  texto: [
+    "Esperamos que este pequeño mensaje haya tocado tu corazón.",
+    "Recuerda: no estás solo.",
+    "Dios te ama, te escucha y puede comenzar algo nuevo en tu vida desde hoy.",
+    "Que tengas un día lleno de paz."
+  ]
+  },
+  {
     titulo: "¿Dónde puedo congregarme?",
     texto: [
       "Arca de Noé - Iglesia para la Familia",
@@ -177,7 +186,7 @@ function mostrarPagina() {
 }
 
 boton.onclick = function() {
-  if (actual < 9) {
+  if (actual < paginas.length - 1) {
     actual++;
     mostrarPagina();
   }
