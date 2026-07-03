@@ -168,9 +168,9 @@ function mostrarPagina() {
     boton.style.display = "inline-block";
   } else if (paginas[actual].final) {
     boton.style.display = "none";
-  } else if (actual === paginas.length - 1) {
-    boton.style.display = "none";
-  } else {
+  } else if (actual >= 10) {
+  boton.style.display = "none";
+} else {
     boton.textContent = "➡️ Continuar";
     boton.style.display = "inline-block";
   }
