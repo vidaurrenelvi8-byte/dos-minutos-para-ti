@@ -72,6 +72,14 @@ const paginas = [
       "Quizá aceptaste una galleta por curiosidad.",
       "Nosotros creemos que Dios puede usar hasta los gestos más pequeños para recordarnos que nunca estamos solos."
     ]
+  },
+  {
+    titulo: "¿Qué necesitas hoy?",
+    texto: [
+      "Será un privilegio acompañarte.",
+      "Elige una opción:"
+    ],
+    final: true
   }
 ];
 
@@ -99,14 +107,27 @@ function mostrarPagina() {
     html += "<p>" + linea + "</p>";
   });
 
+  if (paginas[actual].final) {
+    html += `
+      <div class="opciones">
+        <a href="#" class="opcion">🙏 Quiero que oren por mí</a>
+        <a href="#" class="opcion">📖 Quiero conocer más sobre Jesús</a>
+        <a href="#" class="opcion">💬 Quiero hablar con alguien</a>
+        <a href="#" class="opcion">🏠 ¿Dónde puedo congregarme?</a>
+      </div>
+    `;
+  }
+
   contenido.innerHTML = html;
 
   if (actual === 0) {
     boton.textContent = "Comenzar";
-  } else if (actual === paginas.length - 1) {
-    boton.textContent = "Finalizar";
+    boton.style.display = "inline-block";
+  } else if (paginas[actual].final) {
+    boton.style.display = "none";
   } else {
     boton.textContent = "➡️ Continuar";
+    boton.style.display = "inline-block";
   }
 }
 
@@ -115,9 +136,6 @@ mostrarPagina();
 boton.addEventListener("click", function() {
   if (actual < paginas.length - 1) {
     actual++;
-    mostrarPagina();
-  } else {
-    actual = 0;
     mostrarPagina();
   }
 });
