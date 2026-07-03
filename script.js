@@ -80,16 +80,19 @@ let actual = 0;
 const contenido = document.getElementById("contenido");
 const boton = document.getElementById("boton");
 const numero = document.getElementById("numeroPagina");
+const puntos = document.querySelectorAll(".punto");
 
 function mostrarPagina() {
   numero.textContent = actual + 1;
-const puntos = document.querySelectorAll(".punto");
 
-puntos.forEach(function(p) {
-  p.classList.remove("activo");
-});
+  puntos.forEach(function(punto) {
+    punto.classList.remove("activo");
+  });
 
-puntos[actual].classList.add("activo");
+  if (puntos[actual]) {
+    puntos[actual].classList.add("activo");
+  }
+
   let html = "<h1>" + paginas[actual].titulo + "</h1>";
 
   paginas[actual].texto.forEach(function(linea) {
@@ -98,12 +101,12 @@ puntos[actual].classList.add("activo");
 
   contenido.innerHTML = html;
 
-  if (actual === paginas.length - 1) {
-    boton.textContent = "Finalizar";
-  } else if (actual === 0) {
+  if (actual === 0) {
     boton.textContent = "Comenzar";
+  } else if (actual === paginas.length - 1) {
+    boton.textContent = "Finalizar";
   } else {
-    boton.textContent = "📖 Pasar la página";
+    boton.textContent = "➡️ Continuar";
   }
 }
 
