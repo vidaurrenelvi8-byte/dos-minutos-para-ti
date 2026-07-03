@@ -127,3 +127,79 @@ transform:translateY(0);
 }
 
 }
+/* Corazón */
+
+h1:first-child{
+animation:latir 2s infinite;
+}
+
+@keyframes latir{
+
+0%{
+transform:scale(1);
+}
+
+50%{
+transform:scale(1.08);
+}
+
+100%{
+transform:scale(1);
+}
+
+}
+
+/* Puntos */
+
+#puntos{
+
+display:flex;
+
+justify-content:center;
+
+gap:8px;
+
+margin-bottom:25px;
+
+}
+
+.punto{
+
+width:10px;
+
+height:10px;
+
+border-radius:50%;
+
+background:#d6cfc8;
+
+transition:.4s;
+
+}
+
+.punto.activo{
+
+background:#8B7C6C;
+
+transform:scale(1.3);
+
+}
+
+/* Tarjeta más elegante */
+
+.card{
+
+background:white;
+
+width:100%;
+
+max-width:650px;
+
+border-radius:30px;
+
+padding:45px;
+
+box-shadow:
+0 10px 30px rgba(0,0,0,.08);
+
+}
