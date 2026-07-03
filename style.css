@@ -118,3 +118,27 @@ box-shadow:0 8px 18px rgba(0,0,0,.12);
   color:white;
   transform:translateY(-2px);
 }
+
+.card{
+  perspective:1000px;
+}
+
+#contenido{
+  transform-origin:left center;
+}
+
+.hojear{
+  animation:hojear .55s ease;
+}
+
+@keyframes hojear{
+  0%{
+    opacity:0;
+    transform:rotateY(-18deg) translateX(20px);
+  }
+
+  100%{
+    opacity:1;
+    transform:rotateY(0) translateX(0);
+  }
+}
