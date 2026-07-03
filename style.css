@@ -6,17 +6,21 @@ box-sizing:border-box;
 
 body{
 
-font-family:Arial, Helvetica, sans-serif;
-
 background:#f8f4ef;
 
-color:#5b4b42;
+font-family:Arial, Helvetica, sans-serif;
 
 overflow:hidden;
+
+color:#5c4d43;
 
 }
 
 .pantalla{
+
+position:absolute;
+
+width:100%;
 
 height:100vh;
 
@@ -26,9 +30,21 @@ justify-content:center;
 
 align-items:center;
 
-text-align:center;
+padding:35px;
 
-padding:30px;
+opacity:0;
+
+pointer-events:none;
+
+transition:1s;
+
+}
+
+.pantalla.activa{
+
+opacity:1;
+
+pointer-events:auto;
 
 }
 
@@ -36,7 +52,9 @@ padding:30px;
 
 max-width:500px;
 
-animation:aparecer 1.5s;
+text-align:center;
+
+animation:subir .8s;
 
 }
 
@@ -52,7 +70,15 @@ h1{
 
 font-size:48px;
 
-margin-bottom:20px;
+margin-bottom:15px;
+
+}
+
+h2{
+
+font-size:38px;
+
+margin-bottom:30px;
 
 }
 
@@ -60,27 +86,37 @@ margin-bottom:20px;
 
 font-size:22px;
 
+margin-bottom:45px;
+
 line-height:1.8;
 
-margin-bottom:50px;
+}
 
-color:#7a6c61;
+p{
+
+font-size:22px;
+
+line-height:1.8;
+
+margin-bottom:25px;
 
 }
 
 button{
 
-padding:18px 45px;
+margin-top:30px;
 
-font-size:20px;
+padding:18px 45px;
 
 border:none;
 
-border-radius:50px;
+border-radius:40px;
 
-background:#8c7b68;
+background:#8b7c6c;
 
 color:white;
+
+font-size:20px;
 
 cursor:pointer;
 
@@ -94,13 +130,13 @@ transform:scale(1.05);
 
 }
 
-@keyframes aparecer{
+@keyframes subir{
 
 from{
 
 opacity:0;
 
-transform:translateY(30px);
+transform:translateY(35px);
 
 }
 
