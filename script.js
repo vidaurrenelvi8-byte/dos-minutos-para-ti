@@ -74,7 +74,9 @@ const paginas = [
     ]
   },
   {
-    titulo: "¿Qué necesitas hoy?",
+  titulo: "¿Qué necesitas hoy?",
+  botones: true
+}
     texto: [
       "Será un privilegio acompañarte.",
       "Elige una opción:"
@@ -104,20 +106,23 @@ const paginas = [
 {
   titulo: "¿Dónde puedo congregarme?",
   texto: `
-  Arca de Noé - Iglesia para la Familia
+Arca de Noé - Iglesia para la Familia
 
-  Dirección:
-  Barrio 30 de Agosto, a una cuadra de la Av. Moscú.
+Dirección:
+Barrio 30 de Agosto, a una cuadra de la Av. Moscú.
 
-  Horarios:
+Horarios:
 
-  Sábado
-  19:30 - 21:30
+Sábado
+19:30 - 21:30
 
-  Domingo
-  08:00 - 11:30
-  18:00 - 20:30
-  `
+Domingo
+08:00 - 11:30
+18:00 - 20:30
+
+Ubicación:
+https://maps.app.goo.gl/1vkNxkM8aYV7ugtG9
+`
 }
 let actual = 0;
 
@@ -170,6 +175,36 @@ contenido.classList.add("hojear");
   </div>
 `;
   }
+  if (paginas[actual].botones) {
+
+  contenido.innerHTML = `
+    <h2>¿Qué necesitas hoy?</h2>
+
+    <button onclick="oracion()">
+      🙏 Quiero que oren por mí
+    </button>
+
+    <button onclick="jesus()">
+      📖 Quiero conocer más sobre Jesús
+    </button>
+
+    <button onclick="hablar()">
+      💬 Quiero hablar con alguien
+    </button>
+
+    <button onclick="congregarme()">
+      🏠 ¿Dónde puedo congregarme?
+    </button>
+  `;
+
+} else {
+
+  contenido.innerHTML = `
+    <h2>${paginas[actual].titulo}</h2>
+    <p>${paginas[actual].texto}</p>
+  `;
+
+}
 
   contenido.innerHTML = html;
 
@@ -192,3 +227,37 @@ boton.addEventListener("click", function() {
     mostrarPagina();
   }
 });
+
+function oracion() {
+
+  const mensaje =
+    "Hola. Escaneé el QR de Dos Minutos Para Ti y me gustaría que oren por mí.";
+
+  window.open(
+    "https://wa.me/59173626070?text=" +
+    encodeURIComponent(mensaje),
+    "_blank"
+  );
+}
+
+function hablar() {
+
+  const mensaje =
+    "Hola. Escaneé el QR de Dos Minutos Para Ti y me gustaría hablar con alguien.";
+
+  window.open(
+    "https://wa.me/59173626070?text=" +
+    encodeURIComponent(mensaje),
+    "_blank"
+  );
+}
+
+function jesus() {
+  actual = paginas.length - 2;
+  mostrarPagina();
+}
+
+function congregarme() {
+  actual = paginas.length - 1;
+  mostrarPagina();
+}
