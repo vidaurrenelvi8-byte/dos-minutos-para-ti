@@ -4,77 +4,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Dos minutos para ti</title>
+
+    <!-- Tipografías -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- PORTADA -->
+<div class="card">
 
-    <section class="pantalla activa" id="portada">
+    <div id="progreso">
+        Página <span id="numeroPagina">1</span> de 9
+    </div>
 
-        <div class="contenido">
+    <div id="contenido">
 
-            <div class="corazon">❤️</div>
+    </div>
 
-            <h1>Dos minutos para ti</h1>
+    <button id="boton">
+        Comenzar
+    </button>
 
-            <p class="subtitulo">
-                Un pequeño detalle.
-                <br>
-                Un gran mensaje.
-            </p>
-
-            <button id="btnComenzar">
-                Comenzar
-            </button>
-
-        </div>
-
-    </section>
-
-    <!-- PÁGINA 1 -->
-
-    <section class="pantalla" id="pagina1">
-
-        <div class="contenido">
-
-            <h2>Para ti...</h2>
-
-            <p>
-
-                Antes de continuar con tu día,
-
-                regálate dos minutos.
-
-            </p>
-
-            <p>
-
-                Respira.
-
-            </p>
-
-            <p>
-
-                Y lee estas palabras con calma.
-
-            </p>
-
-            <button id="btnPagina1">
-
-                📖 Pasar la página
-
-            </button>
-
-        </div>
-
-    </section>
+</div>
 
 <script src="script.js"></script>
 
 </body>
-
 </html>
