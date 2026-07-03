@@ -138,10 +138,9 @@ function mostrarPagina() {
     boton.style.display = "inline-block";
   }
 }
-
 boton.onclick = function() {
   if (paginas[actual].tipo === "jesus1") {
-    actual = paginas.findIndex(p => p.tipo === "jesusFinal");
+    actual = paginas.findIndex(pagina => pagina.tipo === "jesusFinal");
     mostrarPagina();
     return;
   }
@@ -163,12 +162,12 @@ function hablar() {
 }
 
 function jesus() {
-  actual = paginas.findIndex(p => p.tipo === "jesus1");
+  actual = paginas.findIndex(pagina => pagina.tipo === "jesus1");
   mostrarPagina();
 }
 
 function congregarme() {
-  actual = paginas.findIndex(p => p.tipo === "congregarme");
+  actual = paginas.findIndex(pagina => pagina.tipo === "congregarme");
   mostrarPagina();
 }
 
