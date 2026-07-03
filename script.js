@@ -176,37 +176,17 @@ contenido.classList.add("hojear");
 `;
   }
   
-  if (paginas[actual].botones) {
-
-  contenido.innerHTML = `
+ if (paginas[actual].botones) {
+  html = `
     <h2>¿Qué necesitas hoy?</h2>
 
-    <button onclick="oracion()">
-      🙏 Quiero que oren por mí
-    </button>
-
-    <button onclick="jesus()">
-      📖 Quiero conocer más sobre Jesús
-    </button>
-
-    <button onclick="hablar()">
-      💬 Quiero hablar con alguien
-    </button>
-
-    <button onclick="congregarme()">
-      🏠 ¿Dónde puedo congregarme?
-    </button>
+    <button onclick="oracion()">🙏 Quiero que oren por mí</button>
+    <button onclick="jesus()">📖 Quiero conocer más sobre Jesús</button>
+    <button onclick="hablar()">💬 Quiero hablar con alguien</button>
+    <button onclick="congregarme()">🏠 ¿Dónde puedo congregarme?</button>
   `;
-
-} else {
-
-  contenido.innerHTML = `
-    <h2>${paginas[actual].titulo}</h2>
-    <p>${paginas[actual].texto}</p>
-  `;
-
 }
-
+ 
   contenido.innerHTML = html;
 
   if (actual === 0) {
