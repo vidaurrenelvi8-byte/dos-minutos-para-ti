@@ -102,7 +102,7 @@ const paginas = [
       "Ubicación: https://maps.app.goo.gl/1vkNxkM8aYV7ugtG9"
     ],
     mapa: true
-  },
+  }
   {
   titulo: "Gracias por llegar hasta aquí ❤️",
   texto: [
