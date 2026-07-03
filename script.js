@@ -209,12 +209,13 @@ contenido.classList.add("hojear");
 
 mostrarPagina();
 
-boton.addEventListener("click", function() {
+const boton = document.getElementById("boton");
+boton.onclick = function () {
   if (actual < paginas.length - 1) {
     actual++;
     mostrarPagina();
   }
-});
+};
 
 function oracion() {
 
