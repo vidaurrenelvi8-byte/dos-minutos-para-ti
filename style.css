@@ -1,206 +1,69 @@
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
+*{margin:0;padding:0;box-sizing:border-box}
 
 body{
-
-background:#F8F4EF;
-
-font-family:Poppins,sans-serif;
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-height:100vh;
-
-padding:20px;
-
-color:#5b4b42;
-
+  min-height:100vh;
+  background:#f8f4ef;
+  font-family:Arial,sans-serif;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+  color:#5b4b42;
 }
 
 .card{
-
-background:white;
-
-width:100%;
-
-max-width:650px;
-
-border-radius:25px;
-
-padding:45px;
-
-box-shadow:0 15px 35px rgba(0,0,0,.08);
-
-text-align:center;
-
-transition:.5s;
-
+  background:white;
+  width:100%;
+  max-width:650px;
+  border-radius:30px;
+  padding:45px;
+  text-align:center;
+  box-shadow:0 10px 30px rgba(0,0,0,.08);
 }
 
 #progreso{
-
-font-size:14px;
-
-color:#999;
-
-margin-bottom:30px;
-
+  color:#999;
+  margin-bottom:25px;
+  font-size:18px;
 }
-
-h1{
-
-font-family:'Playfair Display',serif;
-
-font-size:42px;
-
-margin-bottom:25px;
-
-}
-
-p{
-
-font-size:20px;
-
-line-height:1.9;
-
-margin-bottom:18px;
-
-}
-
-button{
-
-margin-top:35px;
-
-padding:18px 45px;
-
-border:none;
-
-border-radius:50px;
-
-background:#8B7C6C;
-
-color:white;
-
-font-size:18px;
-
-cursor:pointer;
-
-transition:.3s;
-
-}
-
-button:hover{
-
-transform:scale(1.05);
-
-}
-
-.fade{
-
-animation:fade .6s;
-
-}
-
-@keyframes fade{
-
-from{
-
-opacity:0;
-
-transform:translateY(15px);
-
-}
-
-to{
-
-opacity:1;
-
-transform:translateY(0);
-
-}
-
-}
-
-/* Corazón */
-
-h1:first-child{
-animation:latir 2s infinite;
-}
-
-@keyframes latir{
-
-0%{
-transform:scale(1);
-}
-
-50%{
-transform:scale(1.08);
-}
-
-100%{
-transform:scale(1);
-}
-
-}
-
-/* Puntos */
 
 #puntos{
-
-display:flex;
-
-justify-content:center;
-
-gap:8px;
-
-margin-bottom:25px;
-
+  display:flex;
+  justify-content:center;
+  gap:8px;
+  margin-bottom:30px;
 }
 
 .punto{
-
-width:10px;
-
-height:10px;
-
-border-radius:50%;
-
-background:#d6cfc8;
-
-transition:.4s;
-
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:#d6cfc8;
 }
 
 .punto.activo{
-
-background:#8B7C6C;
-
-transform:scale(1.3);
-
+  background:#8b7c6c;
+  transform:scale(1.3);
 }
 
-/* Tarjeta más elegante */
+h1{
+  font-size:38px;
+  margin-bottom:25px;
+}
 
-.card{
+p{
+  font-size:20px;
+  line-height:1.8;
+  margin-bottom:18px;
+}
 
-background:white;
-
-width:100%;
-
-max-width:650px;
-
-border-radius:30px;
-
-padding:45px;
-
-box-shadow:
-0 10px 30px rgba(0,0,0,.08);
-
+button{
+  margin-top:30px;
+  padding:16px 38px;
+  border:none;
+  border-radius:50px;
+  background:#8b7c6c;
+  color:white;
+  font-size:18px;
+  cursor:pointer;
 }
