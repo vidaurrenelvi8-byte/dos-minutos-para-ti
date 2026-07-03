@@ -83,7 +83,13 @@ const numero = document.getElementById("numeroPagina");
 
 function mostrarPagina() {
   numero.textContent = actual + 1;
+const puntos = document.querySelectorAll(".punto");
 
+puntos.forEach(function(p) {
+  p.classList.remove("activo");
+});
+
+puntos[actual].classList.add("activo");
   let html = "<h1>" + paginas[actual].titulo + "</h1>";
 
   paginas[actual].texto.forEach(function(linea) {
