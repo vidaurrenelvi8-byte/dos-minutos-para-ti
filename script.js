@@ -1,4 +1,4 @@
-const paginas = [alert("SCRIPT NUEVO CARGADO - VERSION 200");
+const paginas = [
   {
     titulo: "❤️ Dos minutos para ti",
     texto: ["Antes de continuar con tu día...", "Regálate dos minutos.", "Respira.", "Y lee estas palabras con calma."]
@@ -131,7 +131,8 @@ function mostrarPagina() {
   if (actual === 0) {
     boton.textContent = "Comenzar";
     boton.style.display = "inline-block";
-  } else if (paginas[actual].final || paginas[actual].tipo === "jesusFinal" || paginas[actual].tipo === "congregarme") {
+  } else if (paginas[actual].final || paginas[actual].tipo === "jesusFinal"
+    paginas[actual].tipo === "congregarme") {
     boton.style.display = "none";
   } else {
     boton.textContent = "➡️ Continuar";
