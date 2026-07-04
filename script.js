@@ -133,6 +133,7 @@ let actual = 0;
 
 const contenido = document.getElementById("contenido");
 const boton = document.getElementById("boton");
+const volver = document.getElementById("volver");
 const progreso = document.getElementById("progreso");
 const puntos = document.getElementById("puntos");
 
@@ -236,6 +237,12 @@ function mostrarBoton(pagina) {
   } else {
     boton.style.display = "none";
   }
+
+  if (actual === 0) {
+    volver.style.display = "none";
+  } else {
+    volver.style.display = "inline-block";
+  }
 }
 
 function irAPagina(numeroPagina, guardarHistorial = true) {
@@ -252,6 +259,17 @@ function irAPagina(numeroPagina, guardarHistorial = true) {
 }
 
 boton.addEventListener("click", function() {
+  volver.addEventListener("click", function() {
+  if (actual === 11) {
+    actual = 10;
+  } else if (actual === 10 || actual === 12) {
+    actual = 9;
+  } else if (actual > 0 && actual <= 9) {
+    actual--;
+  }
+
+  mostrarPagina();
+});
   if (actual >= 0 && actual <= 8) {
     irAPagina(actual + 1);
   } else if (paginas[actual].grupo === "jesus" && paginas[actual].pasoJesus === 1) {
