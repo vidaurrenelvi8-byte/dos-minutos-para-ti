@@ -259,7 +259,15 @@ function irAPagina(numeroPagina, guardarHistorial = true) {
 }
 
 boton.addEventListener("click", function() {
-  volver.addEventListener("click", function() {
+  if (actual === 11) {
+    actual = 10;
+  } else if (actual === 10 || actual === 12) {
+    actual = 9;
+  } else if (actual > 0 && actual <= 9) {
+    actual--;
+  }
+
+volver.addEventListener("click", function() {
   if (actual === 0) {
     return;
   }
@@ -287,14 +295,6 @@ boton.addEventListener("click", function() {
     irAPagina(actual - 1, false);
   }
 });
-  if (actual === 11) {
-    actual = 10;
-  } else if (actual === 10 || actual === 12) {
-    actual = 9;
-  } else if (actual > 0 && actual <= 9) {
-    actual--;
-  }
-
   mostrarPagina();
 });
   if (actual >= 0 && actual <= 8) {
