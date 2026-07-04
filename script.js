@@ -266,7 +266,6 @@ boton.addEventListener("click", function() {
   } else if (actual > 0 && actual <= 9) {
     actual--;
   }
-
 volver.addEventListener("click", function() {
   if (actual === 0) {
     return;
