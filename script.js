@@ -1,44 +1,95 @@
 const paginas = [
   {
     titulo: "❤️ Dos minutos para ti",
-    texto: ["Antes de continuar con tu día...", "Regálate dos minutos.", "Respira.", "Y lee estas palabras con calma."]
+    texto: [
+      "Antes de continuar con tu día...",
+      "Regálate dos minutos.",
+      "Respira.",
+      "Y lee estas palabras con calma."
+    ],
+    grupo: "principal"
   },
   {
     titulo: "Hola",
-    texto: ["No sabemos quién eres.", "No conocemos tu historia.", "No sabemos qué has vivido ni qué estás enfrentando hoy.", "Gracias por regalarte este momento."]
+    texto: [
+      "No sabemos quién eres.",
+      "No conocemos tu historia.",
+      "No sabemos qué has vivido ni qué estás enfrentando hoy.",
+      "Gracias por regalarte este momento."
+    ],
+    grupo: "principal"
   },
   {
     titulo: "Tu vida tiene valor",
-    texto: ["Tu valor no depende de la opinión de los demás.", "No depende de tus logros.", "No depende de tus errores.", "Lo determina Aquel que te creó."]
+    texto: [
+      "Tu valor no depende de la opinión de los demás.",
+      "No depende de tus logros.",
+      "No depende de tus errores.",
+      "Lo determina Aquel que te creó."
+    ],
+    grupo: "principal"
   },
   {
     titulo: "Dios te conoce",
-    texto: ["Él conoce tus alegrías.", "Tus preguntas.", "Tus luchas.", "Y aun así te ama profundamente."]
+    texto: [
+      "Él conoce tus alegrías.",
+      "Tus preguntas.",
+      "Tus luchas.",
+      "Y aun así te ama profundamente."
+    ],
+    grupo: "principal"
   },
   {
     titulo: "Isaías 41:10",
-    texto: ["No temas, porque yo estoy contigo.", "Yo te fortaleceré.", "Yo te ayudaré."]
+    texto: [
+      "No temas, porque yo estoy contigo.",
+      "Yo te fortaleceré.",
+      "Yo te ayudaré."
+    ],
+    grupo: "principal"
   },
   {
     titulo: "Mateo 11:28",
-    texto: ["Vengan a mí todos los que están cansados.", "Y yo les daré descanso."]
+    texto: [
+      "Vengan a mí todos los que están cansados.",
+      "Y yo les daré descanso."
+    ],
+    grupo: "principal"
   },
   {
     titulo: "Acércate a Dios",
-    texto: ["No necesitas una oración perfecta.", "Solo un corazón sincero.", "Él siempre escucha."]
+    texto: [
+      "No necesitas una oración perfecta.",
+      "Solo un corazón sincero.",
+      "Él siempre escucha."
+    ],
+    grupo: "principal"
   },
   {
     titulo: "Gracias ❤️",
-    texto: ["No estás olvidado.", "Eres valioso.", "Dios nunca ha dejado de amarte."]
+    texto: [
+      "No estás olvidado.",
+      "Eres valioso.",
+      "Dios nunca ha dejado de amarte."
+    ],
+    grupo: "principal"
   },
   {
     titulo: "Un último pensamiento",
-    texto: ["Quizá aceptaste una galleta por curiosidad.", "Nosotros creemos que Dios puede usar hasta los gestos más pequeños para recordarnos que nunca estamos solos."]
+    texto: [
+      "Quizá aceptaste una galleta por curiosidad.",
+      "Nosotros creemos que Dios puede usar hasta los gestos más pequeños para recordarnos que nunca estamos solos."
+    ],
+    grupo: "principal"
   },
   {
     titulo: "¿Qué necesitas hoy?",
-    texto: ["Será un privilegio acompañarte.", "Elige una opción:"],
-    final: true
+    texto: [
+      "Será un privilegio acompañarte.",
+      "Elige una opción:"
+    ],
+    final: true,
+    grupo: "principal"
   },
   {
     titulo: "Conocer más sobre Jesús",
@@ -47,7 +98,7 @@ const paginas = [
       "Él vino para acercarnos al corazón de Dios.",
       "Vino a buscar al cansado, al herido, al que se siente lejos y al que necesita esperanza.",
       "Jesús mostró amor, perdón y compasión a personas que muchos rechazaban."
-  ],
+    ],
     tipo: "jesus1"
   },
   {
@@ -86,17 +137,9 @@ function mostrarPagina() {
   void contenido.offsetWidth;
   contenido.classList.add("hojear");
 
-  numero.textContent = actual + 1;
-
-  puntos.forEach(punto => punto.classList.remove("activo"));
-
-  if (puntos[actual]) {
-    puntos[actual].classList.add("activo");
-  }
-
   let html = "<h1>" + paginas[actual].titulo + "</h1>";
 
-  paginas[actual].texto.forEach(linea => {
+  paginas[actual].texto.forEach(function(linea) {
     html += "<p>" + linea + "</p>";
   });
 
@@ -117,31 +160,47 @@ function mostrarPagina() {
 
   contenido.innerHTML = html;
 
+  numero.textContent = actual + 1;
+
+  puntos.forEach(function(punto) {
+    punto.classList.remove("activo");
+  });
+
+  if (puntos[actual]) {
+    puntos[actual].classList.add("activo");
+  }
+
   if (paginas[actual].final) {
-    document.getElementById("btnOracion").addEventListener("click", oracion);
-    document.getElementById("btnJesus").addEventListener("click", jesus);
-    document.getElementById("btnHablar").addEventListener("click", hablar);
-    document.getElementById("btnCongregarme").addEventListener("click", congregarme);
+    document.getElementById("btnOracion").onclick = oracion;
+    document.getElementById("btnJesus").onclick = jesus;
+    document.getElementById("btnHablar").onclick = hablar;
+    document.getElementById("btnCongregarme").onclick = congregarme;
   }
 
   if (paginas[actual].mapa) {
-    document.getElementById("btnMapa").addEventListener("click", abrirMapa);
+    document.getElementById("btnMapa").onclick = abrirMapa;
   }
 
   if (actual === 0) {
     boton.textContent = "Comenzar";
     boton.style.display = "inline-block";
-  } else if (paginas[actual].final || paginas[actual].tipo === "jesusFinal"
-    paginas[actual].tipo === "congregarme") {
+  } else if (paginas[actual].final) {
+    boton.style.display = "none";
+  } else if (paginas[actual].tipo === "jesusFinal") {
+    boton.style.display = "none";
+  } else if (paginas[actual].tipo === "congregarme") {
     boton.style.display = "none";
   } else {
     boton.textContent = "➡️ Continuar";
     boton.style.display = "inline-block";
   }
 }
+
 boton.onclick = function() {
   if (paginas[actual].tipo === "jesus1") {
-    actual = paginas.findIndex(pagina => pagina.tipo === "jesusFinal");
+    actual = paginas.findIndex(function(pagina) {
+      return pagina.tipo === "jesusFinal";
+    });
     mostrarPagina();
     return;
   }
@@ -163,12 +222,16 @@ function hablar() {
 }
 
 function jesus() {
-  actual = paginas.findIndex(pagina => pagina.tipo === "jesus1");
+  actual = paginas.findIndex(function(pagina) {
+    return pagina.tipo === "jesus1";
+  });
   mostrarPagina();
 }
 
 function congregarme() {
-  actual = paginas.findIndex(pagina => pagina.tipo === "congregarme");
+  actual = paginas.findIndex(function(pagina) {
+    return pagina.tipo === "congregarme";
+  });
   mostrarPagina();
 }
 
