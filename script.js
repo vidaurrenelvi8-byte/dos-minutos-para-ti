@@ -240,11 +240,9 @@ function mostrarBoton(pagina) {
 
 boton.addEventListener("click", function() {
   if (actual >= 0 && actual <= 8) {
-    actual++;
-    mostrarPagina();
+    irAPagina(actual + 1);
   } else if (paginas[actual].grupo === "jesus" && paginas[actual].pasoJesus === 1) {
-    actual = 11;
-    mostrarPagina();
+    irAPagina(11);
   }
 });
 
@@ -259,17 +257,39 @@ function hablar() {
 }
 
 function jesus() {
-  actual = 10;
-  mostrarPagina();
+  irAPagina(10);
 }
 
 function congregarme() {
-  actual = 12;
-  mostrarPagina();
+  irAPagina(12);
 }
 
 function abrirMapa() {
   window.open("https://maps.app.goo.gl/1vkNxkM8aYV7ugtG9", "_blank");
 }
+
+function irAPagina(numeroPagina) {
+  actual = numeroPagina;
+  mostrarPagina();
+
+  history.pushState(
+    { pagina: actual },
+    "",
+    "#pagina-" + actual
+  );
+}
+
+window.addEventListener("popstate", function(event) {
+  if (event.state && typeof event.state.pagina === "number") {
+    actual = event.state.pagina;
+    mostrarPagina();
+  }
+});
+
+history.replaceState(
+  { pagina: actual },
+  "",
+  "#pagina-" + actual
+);
 
 mostrarPagina();
