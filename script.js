@@ -238,6 +238,19 @@ function mostrarBoton(pagina) {
   }
 }
 
+function irAPagina(numeroPagina, guardarHistorial = true) {
+  actual = numeroPagina;
+  mostrarPagina();
+
+  if (guardarHistorial) {
+    history.pushState(
+      { pagina: actual },
+      "",
+      "#pagina-" + actual
+    );
+  }
+}
+
 boton.addEventListener("click", function() {
   if (actual >= 0 && actual <= 8) {
     irAPagina(actual + 1);
@@ -266,17 +279,6 @@ function congregarme() {
 
 function abrirMapa() {
   window.open("https://maps.app.goo.gl/1vkNxkM8aYV7ugtG9", "_blank");
-}
-
-function irAPagina(numeroPagina) {
-  actual = numeroPagina;
-  mostrarPagina();
-
-  history.pushState(
-    { pagina: actual },
-    "",
-    "#pagina-" + actual
-  );
 }
 
 window.addEventListener("popstate", function(event) {
