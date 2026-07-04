@@ -6,8 +6,7 @@ const paginas = [
       "Regálate dos minutos.",
       "Respira.",
       "Y lee estas palabras con calma."
-    ],
-    grupo: "principal"
+    ]
   },
   {
     titulo: "Hola",
@@ -16,8 +15,7 @@ const paginas = [
       "No conocemos tu historia.",
       "No sabemos qué has vivido ni qué estás enfrentando hoy.",
       "Gracias por regalarte este momento."
-    ],
-    grupo: "principal"
+    ]
   },
   {
     titulo: "Tu vida tiene valor",
@@ -26,8 +24,7 @@ const paginas = [
       "No depende de tus logros.",
       "No depende de tus errores.",
       "Lo determina Aquel que te creó."
-    ],
-    grupo: "principal"
+    ]
   },
   {
     titulo: "Dios te conoce",
@@ -36,8 +33,7 @@ const paginas = [
       "Tus preguntas.",
       "Tus luchas.",
       "Y aun así te ama profundamente."
-    ],
-    grupo: "principal"
+    ]
   },
   {
     titulo: "Isaías 41:10",
@@ -45,16 +41,14 @@ const paginas = [
       "No temas, porque yo estoy contigo.",
       "Yo te fortaleceré.",
       "Yo te ayudaré."
-    ],
-    grupo: "principal"
+    ]
   },
   {
     titulo: "Mateo 11:28",
     texto: [
       "Vengan a mí todos los que están cansados.",
       "Y yo les daré descanso."
-    ],
-    grupo: "principal"
+    ]
   },
   {
     titulo: "Acércate a Dios",
@@ -62,8 +56,7 @@ const paginas = [
       "No necesitas una oración perfecta.",
       "Solo un corazón sincero.",
       "Él siempre escucha."
-    ],
-    grupo: "principal"
+    ]
   },
   {
     titulo: "Gracias ❤️",
@@ -71,16 +64,14 @@ const paginas = [
       "No estás olvidado.",
       "Eres valioso.",
       "Dios nunca ha dejado de amarte."
-    ],
-    grupo: "principal"
+    ]
   },
   {
     titulo: "Un último pensamiento",
     texto: [
       "Quizá aceptaste una galleta por curiosidad.",
       "Nosotros creemos que Dios puede usar hasta los gestos más pequeños para recordarnos que nunca estamos solos."
-    ],
-    grupo: "principal"
+    ]
   },
   {
     titulo: "¿Qué necesitas hoy?",
@@ -88,7 +79,6 @@ const paginas = [
       "Será un privilegio acompañarte.",
       "Elige una opción:"
     ],
-    grupo: "principal",
     final: true
   },
   {
@@ -98,8 +88,7 @@ const paginas = [
       "Él conoce tus luchas, tus heridas y tus preguntas.",
       "La Biblia dice: Porque de tal manera amó Dios al mundo, que ha dado a su Hijo unigénito. Juan 3:16"
     ],
-    grupo: "jesus",
-    pasoJesus: 1
+    jesus1: true
   },
   {
     titulo: "Una nueva vida",
@@ -109,8 +98,7 @@ const paginas = [
       "Puedes comenzar hablándole con tus propias palabras hoy mismo.",
       "Dile a Dios lo que sientes, lo que necesitas y lo que hay en tu corazón."
     ],
-    grupo: "jesus",
-    pasoJesus: 2
+    finJesus: true
   },
   {
     titulo: "¿Dónde puedo congregarme?",
@@ -121,7 +109,7 @@ const paginas = [
       "Sábado: 19:30 - 21:30",
       "Domingo: 08:00 - 11:30 / 18:00 - 20:30"
     ],
-    grupo: "congregarme"
+    mapa: true
   }
 ];
 
@@ -129,25 +117,31 @@ let actual = 0;
 
 const contenido = document.getElementById("contenido");
 const boton = document.getElementById("boton");
-const progreso = document.getElementById("progreso");
-const puntos = document.getElementById("puntos");
+const numero = document.getElementById("numeroPagina");
+const puntos = document.querySelectorAll(".punto");
 
 function mostrarPagina() {
   contenido.classList.remove("hojear");
   void contenido.offsetWidth;
   contenido.classList.add("hojear");
 
-  let pagina = paginas[actual];
+  numero.textContent = actual + 1;
 
-  mostrarProgreso(pagina);
+  puntos.forEach(function(punto) {
+    punto.classList.remove("activo");
+  });
 
-  let html = "<h1>" + pagina.titulo + "</h1>";
+  if (puntos[actual]) {
+    puntos[actual].classList.add("activo");
+  }
 
-  pagina.texto.forEach(function(linea) {
+  let html = "<h1>" + paginas[actual].titulo + "</h1>";
+
+  paginas[actual].texto.forEach(function(linea) {
     html += "<p>" + linea + "</p>";
   });
 
-  if (pagina.final) {
+  if (paginas[actual].final) {
     html += `
       <div class="opciones">
         <button id="btnOracion" class="opcion">🙏 Quiero que oren por mí</button>
@@ -158,7 +152,7 @@ function mostrarPagina() {
     `;
   }
 
-  if (pagina.grupo === "congregarme") {
+  if (paginas[actual].mapa) {
     html += `
       <button id="btnMapa" class="opcion">📍 Abrir ubicación en Google Maps</button>
     `;
@@ -166,80 +160,34 @@ function mostrarPagina() {
 
   contenido.innerHTML = html;
 
-  if (pagina.final) {
+  if (paginas[actual].final) {
     document.getElementById("btnOracion").addEventListener("click", oracion);
     document.getElementById("btnJesus").addEventListener("click", jesus);
     document.getElementById("btnHablar").addEventListener("click", hablar);
     document.getElementById("btnCongregarme").addEventListener("click", congregarme);
   }
 
-  if (pagina.grupo === "congregarme") {
+  if (paginas[actual].mapa) {
     document.getElementById("btnMapa").addEventListener("click", abrirMapa);
   }
 
-  mostrarBoton(pagina);
-}
-
-function mostrarProgreso(pagina) {
-  puntos.innerHTML = "";
-
-  if (pagina.grupo === "principal") {
-    progreso.textContent = actual + 1 + " / 10";
-
-    for (let i = 0; i < 10; i++) {
-      let punto = document.createElement("span");
-      punto.className = "punto";
-
-      if (i === actual) {
-        punto.classList.add("activo");
-      }
-
-      puntos.appendChild(punto);
-    }
-  }
-
-  if (pagina.grupo === "jesus") {
-    progreso.textContent = pagina.pasoJesus + " / 2";
-
-    for (let i = 1; i <= 2; i++) {
-      let punto = document.createElement("span");
-      punto.className = "punto";
-
-      if (i === pagina.pasoJesus) {
-        punto.classList.add("activo");
-      }
-
-      puntos.appendChild(punto);
-    }
-  }
-
-  if (pagina.grupo === "congregarme") {
-    progreso.textContent = "";
-    puntos.innerHTML = "";
-  }
-}
-
-function mostrarBoton(pagina) {
   if (actual === 0) {
     boton.textContent = "Comenzar";
     boton.style.display = "inline-block";
-  } else if (actual >= 1 && actual <= 8) {
-    boton.textContent = "➡️ Continuar";
-    boton.style.display = "inline-block";
-  } else if (pagina.grupo === "jesus" && pagina.pasoJesus === 1) {
-    boton.textContent = "➡️ Continuar";
-    boton.style.display = "inline-block";
-  } else {
+  } else if (paginas[actual].final || paginas[actual].finJesus || paginas[actual].mapa) {
     boton.style.display = "none";
+  } else {
+    boton.textContent = "➡️ Continuar";
+    boton.style.display = "inline-block";
   }
 }
 
 boton.onclick = function() {
-  if (actual >= 0 && actual <= 8) {
-    actual++;
-    mostrarPagina();
-  } else if (paginas[actual].grupo === "jesus" && paginas[actual].pasoJesus === 1) {
+  if (paginas[actual].jesus1) {
     actual = 11;
+    mostrarPagina();
+  } else if (actual < 9) {
+    actual++;
     mostrarPagina();
   }
 };
