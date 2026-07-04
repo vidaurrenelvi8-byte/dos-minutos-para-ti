@@ -1,1 +1,219 @@
+const paginas = [
+  {
+    titulo: "❤️ Dos minutos para ti",
+    texto: [
+      "Antes de continuar con tu día...",
+      "Regálate dos minutos.",
+      "Respira.",
+      "Y lee estas palabras con calma."
+    ]
+  },
+  {
+    titulo: "Hola",
+    texto: [
+      "No sabemos quién eres.",
+      "No conocemos tu historia.",
+      "No sabemos qué has vivido ni qué estás enfrentando hoy.",
+      "Gracias por regalarte este momento."
+    ]
+  },
+  {
+    titulo: "Tu vida tiene valor",
+    texto: [
+      "Tu valor no depende de la opinión de los demás.",
+      "No depende de tus logros.",
+      "No depende de tus errores.",
+      "Lo determina Aquel que te creó."
+    ]
+  },
+  {
+    titulo: "Dios te conoce",
+    texto: [
+      "Él conoce tus alegrías.",
+      "Tus preguntas.",
+      "Tus luchas.",
+      "Y aun así te ama profundamente."
+    ]
+  },
+  {
+    titulo: "Isaías 41:10",
+    texto: [
+      "No temas, porque yo estoy contigo.",
+      "Yo te fortaleceré.",
+      "Yo te ayudaré."
+    ]
+  },
+  {
+    titulo: "Mateo 11:28",
+    texto: [
+      "Vengan a mí todos los que están cansados.",
+      "Y yo les daré descanso."
+    ]
+  },
+  {
+    titulo: "Acércate a Dios",
+    texto: [
+      "No necesitas una oración perfecta.",
+      "Solo un corazón sincero.",
+      "Él siempre escucha."
+    ]
+  },
+  {
+    titulo: "Gracias ❤️",
+    texto: [
+      "No estás olvidado.",
+      "Eres valioso.",
+      "Dios nunca ha dejado de amarte."
+    ]
+  },
+  {
+    titulo: "Un último pensamiento",
+    texto: [
+      "Quizá aceptaste una galleta por curiosidad.",
+      "Nosotros creemos que Dios puede usar hasta los gestos más pequeños para recordarnos que nunca estamos solos."
+    ]
+  },
+  {
+    titulo: "¿Qué necesitas hoy?",
+    texto: [
+      "Será un privilegio acompañarte.",
+      "Elige una opción:"
+    ],
+    final: true
+  },
+  {
+    titulo: "Conocer más sobre Jesús",
+    texto: [
+      "Jesús no vino para crear una religión, vino para acercarnos a Dios.",
+      "Él conoce tus luchas, tus heridas y tus preguntas.",
+      "La Biblia dice: Porque de tal manera amó Dios al mundo, que ha dado a su Hijo unigénito. Juan 3:16"
+    ],
+    jesus1: true
+  },
+  {
+    titulo: "Una nueva vida",
+    texto: [
+      "Jesús murió y resucitó para darte una nueva vida.",
+      "No necesitas saberlo todo para acercarte a Él.",
+      "Puedes comenzar hablándole con tus propias palabras hoy mismo.",
+      "Dile a Dios lo que sientes, lo que necesitas y lo que hay en tu corazón."
+    ],
+    finJesus: true
+  },
+  {
+    titulo: "¿Dónde puedo congregarme?",
+    texto: [
+      "Arca de Noé - Iglesia para la Familia",
+      "Dirección: Barrio 30 de Agosto, a una cuadra de la Av. Moscú.",
+      "Horarios:",
+      "Sábado: 19:30 - 21:30",
+      "Domingo: 08:00 - 11:30 / 18:00 - 20:30"
+    ],
+    mapa: true
+  }
+];
 
+let actual = 0;
+
+const contenido = document.getElementById("contenido");
+const boton = document.getElementById("boton");
+const numero = document.getElementById("numeroPagina");
+const puntos = document.querySelectorAll(".punto");
+
+function mostrarPagina() {
+  contenido.classList.remove("hojear");
+  void contenido.offsetWidth;
+  contenido.classList.add("hojear");
+
+  numero.textContent = actual + 1;
+
+  puntos.forEach(function(punto) {
+    punto.classList.remove("activo");
+  });
+
+  if (puntos[actual]) {
+    puntos[actual].classList.add("activo");
+  }
+
+  let html = "<h1>" + paginas[actual].titulo + "</h1>";
+
+  paginas[actual].texto.forEach(function(linea) {
+    html += "<p>" + linea + "</p>";
+  });
+
+  if (paginas[actual].final) {
+    html += `
+      <div class="opciones">
+        <button id="btnOracion" class="opcion">🙏 Quiero que oren por mí</button>
+        <button id="btnJesus" class="opcion">📖 Quiero conocer más sobre Jesús</button>
+        <button id="btnHablar" class="opcion">💬 Quiero hablar con alguien</button>
+        <button id="btnCongregarme" class="opcion">🏠 ¿Dónde puedo congregarme?</button>
+      </div>
+    `;
+  }
+
+  if (paginas[actual].mapa) {
+    html += `
+      <button id="btnMapa" class="opcion">📍 Abrir ubicación en Google Maps</button>
+    `;
+  }
+
+  contenido.innerHTML = html;
+
+  if (paginas[actual].final) {
+    document.getElementById("btnOracion").addEventListener("click", oracion);
+    document.getElementById("btnJesus").addEventListener("click", jesus);
+    document.getElementById("btnHablar").addEventListener("click", hablar);
+    document.getElementById("btnCongregarme").addEventListener("click", congregarme);
+  }
+
+  if (paginas[actual].mapa) {
+    document.getElementById("btnMapa").addEventListener("click", abrirMapa);
+  }
+
+  if (actual === 0) {
+    boton.textContent = "Comenzar";
+    boton.style.display = "inline-block";
+  } else if (paginas[actual].final || paginas[actual].finJesus || paginas[actual].mapa) {
+    boton.style.display = "none";
+  } else {
+    boton.textContent = "➡️ Continuar";
+    boton.style.display = "inline-block";
+  }
+}
+
+boton.onclick = function() {
+  if (paginas[actual].jesus1) {
+    actual = 11;
+    mostrarPagina();
+  } else if (actual < 9) {
+    actual++;
+    mostrarPagina();
+  }
+};
+
+function oracion() {
+  const mensaje = "Hola. Escaneé el QR de Dos Minutos Para Ti y me gustaría que oren por mí.";
+  window.open("https://wa.me/59173626070?text=" + encodeURIComponent(mensaje), "_blank");
+}
+
+function hablar() {
+  const mensaje = "Hola. Escaneé el QR de Dos Minutos Para Ti y me gustaría hablar con alguien.";
+  window.open("https://wa.me/59173626070?text=" + encodeURIComponent(mensaje), "_blank");
+}
+
+function jesus() {
+  actual = 10;
+  mostrarPagina();
+}
+
+function congregarme() {
+  actual = 12;
+  mostrarPagina();
+}
+
+function abrirMapa() {
+  window.open("https://maps.app.goo.gl/1vkNxkM8aYV7ugtG9", "_blank");
+}
+
+mostrarPagina();
