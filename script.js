@@ -260,6 +260,33 @@ function irAPagina(numeroPagina, guardarHistorial = true) {
 
 boton.addEventListener("click", function() {
   volver.addEventListener("click", function() {
+  if (actual === 0) {
+    return;
+  }
+
+  // Si está en la segunda hoja de "Conocer más sobre Jesús",
+  // vuelve a la primera hoja de Jesús.
+  if (actual === 11) {
+    irAPagina(10, false);
+  }
+
+  // Si está en la primera hoja de Jesús,
+  // vuelve a "¿Qué necesitas hoy?"
+  else if (actual === 10) {
+    irAPagina(9, false);
+  }
+
+  // Si está en "¿Dónde puedo congregarme?",
+  // vuelve a "¿Qué necesitas hoy?"
+  else if (actual === 12) {
+    irAPagina(9, false);
+  }
+
+  // En las páginas normales, vuelve una hoja atrás.
+  else {
+    irAPagina(actual - 1, false);
+  }
+});
   if (actual === 11) {
     actual = 10;
   } else if (actual === 10 || actual === 12) {
