@@ -228,19 +228,17 @@ function mostrarBoton(pagina) {
   if (actual === 0) {
     boton.textContent = "Comenzar";
     boton.style.display = "inline-block";
+    volver.style.display = "none";
   } else if (actual >= 1 && actual <= 8) {
     boton.textContent = "➡️ Continuar";
     boton.style.display = "inline-block";
+    volver.style.display = "inline-block";
   } else if (pagina.grupo === "jesus" && pagina.pasoJesus === 1) {
     boton.textContent = "➡️ Continuar";
     boton.style.display = "inline-block";
+    volver.style.display = "inline-block";
   } else {
     boton.style.display = "none";
-  }
-
-  if (actual === 0) {
-    volver.style.display = "none";
-  } else {
     volver.style.display = "inline-block";
   }
 }
@@ -259,43 +257,6 @@ function irAPagina(numeroPagina, guardarHistorial = true) {
 }
 
 boton.addEventListener("click", function() {
-  volver.addEventListener("click", function() {
-  if (actual === 0) {
-    return;
-  }
-
-  // Si está en la segunda hoja de "Conocer más sobre Jesús",
-  // vuelve a la primera hoja de Jesús.
-  if (actual === 11) {
-    irAPagina(10, false);
-  }
-
-  // Si está en la primera hoja de Jesús,
-  // vuelve a "¿Qué necesitas hoy?"
-  else if (actual === 10) {
-    irAPagina(9, false);
-  }
-
-  // Si está en "¿Dónde puedo congregarme?",
-  // vuelve a "¿Qué necesitas hoy?"
-  else if (actual === 12) {
-    irAPagina(9, false);
-  }
-
-  // En las páginas normales, vuelve una hoja atrás.
-  else {
-    irAPagina(actual - 1, false);
-  }
-});
-  mostrarPagina();
-});
-  if (actual >= 0 && actual <= 8) {
-    irAPagina(actual + 1);
-  } else if (paginas[actual].grupo === "jesus" && paginas[actual].pasoJesus === 1) {
-    irAPagina(11);
-  }
-});
-
   if (actual === 11) {
     actual = 10;
   } else if (actual === 10 || actual === 12) {
@@ -303,8 +264,25 @@ boton.addEventListener("click", function() {
   } else if (actual > 0 && actual <= 9) {
     actual--;
   }
+volver.addEventListener("click", function() {
+  if (actual === 0) {
+    return;
+  }
 
-function oracion() {
+  if (actual === 11) {
+    actual = 10;
+  } else if (actual === 10) {
+    actual = 9;
+  } else if (actual === 12) {
+    actual = 9;
+  } else {
+    actual--;
+  }
+
+  mostrarPagina();
+});
+
+  function oracion() {
   const mensaje = "Hola. Escaneé el QR de Dos Minutos Para Ti y me gustaría que oren por mí.";
   window.open("https://wa.me/59173626070?text=" + encodeURIComponent(mensaje), "_blank");
 }
