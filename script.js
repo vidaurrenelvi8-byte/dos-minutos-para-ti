@@ -47,7 +47,7 @@ const paginas = [
       "Él vino para acercarnos al corazón de Dios.",
       "Vino a buscar al cansado, al herido, al que se siente lejos y al que necesita esperanza.",
       "Jesús mostró amor, perdón y compasión a personas que muchos rechazaban."
-    ],
+  ],
     tipo: "jesus1"
   },
   {
