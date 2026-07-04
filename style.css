@@ -82,6 +82,14 @@ p {
   margin: 18px 0;
 }
 
+.botones-navegacion {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
 button {
   margin-top: 35px;
   padding: 18px 42px;
@@ -96,6 +104,14 @@ button {
 
 button:hover {
   opacity: 0.9;
+}
+
+#volver {
+  display: none;
+  background: transparent;
+  color: #9b8b7a;
+  box-shadow: none;
+  padding: 18px 20px;
 }
 
 .opciones {
@@ -144,32 +160,4 @@ button:hover {
   .opcion {
     font-size: 18px;
   }
-}
-
-#volver {
-  background: transparent;
-  color: #9b8b7a;
-  box-shadow: none;
-  margin-top: 20px;
-  margin-right: 10px;
-  padding: 12px 20px;
-  font-size: 20px;
-}
-
-.botones-navegacion {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 15px;
-  flex-wrap: wrap;
-}
-
-#volver {
-  display: none;
-  background: transparent;
-  color: #9b8b7a;
-  box-shadow: none;
-  margin-top: 35px;
-  padding: 18px 20px;
-  font-size: 22px;
 }
