@@ -259,14 +259,7 @@ function irAPagina(numeroPagina, guardarHistorial = true) {
 }
 
 boton.addEventListener("click", function() {
-  if (actual === 11) {
-    actual = 10;
-  } else if (actual === 10 || actual === 12) {
-    actual = 9;
-  } else if (actual > 0 && actual <= 9) {
-    actual--;
-  }
-volver.addEventListener("click", function() {
+  volver.addEventListener("click", function() {
   if (actual === 0) {
     return;
   }
@@ -302,6 +295,14 @@ volver.addEventListener("click", function() {
     irAPagina(11);
   }
 });
+
+  if (actual === 11) {
+    actual = 10;
+  } else if (actual === 10 || actual === 12) {
+    actual = 9;
+  } else if (actual > 0 && actual <= 9) {
+    actual--;
+  }
 
 function oracion() {
   const mensaje = "Hola. Escaneé el QR de Dos Minutos Para Ti y me gustaría que oren por mí.";
