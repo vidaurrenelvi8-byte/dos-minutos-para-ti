@@ -104,19 +104,10 @@ box-shadow:0 4px 12px rgba(0,0,0,.08);
 }
 
 .opcion:hover{
-
-background:#756858;
-
-transform:translateY(-3px);
-
-box-shadow:0 8px 18px rgba(0,0,0,.12);
-
-}
-
-.opcion:hover{
-  background:#8b7c6c;
+  background:#756858;
   color:white;
-  transform:translateY(-2px);
+  transform:translateY(-3px);
+  box-shadow:0 8px 18px rgba(0,0,0,.12);
 }
 .card{
   perspective:1000px;
