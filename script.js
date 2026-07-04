@@ -112,8 +112,7 @@ const paginas = [
       "Dile a Dios lo que sientes, lo que necesitas y lo que hay en tu corazón."
     ],
     grupo: "jesus",
-    pasoJesus: 2,
-    finJesus: true
+    pasoJesus: 2
   },
   {
     titulo: "¿Dónde puedo congregarme?",
@@ -182,7 +181,7 @@ function mostrarPagina() {
     document.getElementById("btnMapa").addEventListener("click", abrirMapa);
   }
 
-  mostrarBoton(pagina);
+  mostrarBotones(pagina);
 }
 
 function mostrarProgreso(pagina) {
@@ -224,7 +223,7 @@ function mostrarProgreso(pagina) {
   }
 }
 
-function mostrarBoton(pagina) {
+function mostrarBotones(pagina) {
   if (actual === 0) {
     boton.textContent = "Comenzar";
     boton.style.display = "inline-block";
@@ -243,27 +242,16 @@ function mostrarBoton(pagina) {
   }
 }
 
-function irAPagina(numeroPagina, guardarHistorial = true) {
-  actual = numeroPagina;
-  mostrarPagina();
-
-  if (guardarHistorial) {
-    history.pushState(
-      { pagina: actual },
-      "",
-      "#pagina-" + actual
-    );
-  }
-}
-
 boton.addEventListener("click", function() {
-  if (actual === 11) {
-    actual = 10;
-  } else if (actual === 10 || actual === 12) {
-    actual = 9;
-  } else if (actual > 0 && actual <= 9) {
-    actual--;
+  if (actual >= 0 && actual <= 8) {
+    actual++;
+    mostrarPagina();
+  } else if (paginas[actual].grupo === "jesus" && paginas[actual].pasoJesus === 1) {
+    actual = 11;
+    mostrarPagina();
   }
+});
+
 volver.addEventListener("click", function() {
   if (actual === 0) {
     return;
@@ -282,7 +270,7 @@ volver.addEventListener("click", function() {
   mostrarPagina();
 });
 
-  function oracion() {
+function oracion() {
   const mensaje = "Hola. Escaneé el QR de Dos Minutos Para Ti y me gustaría que oren por mí.";
   window.open("https://wa.me/59173626070?text=" + encodeURIComponent(mensaje), "_blank");
 }
@@ -293,28 +281,17 @@ function hablar() {
 }
 
 function jesus() {
-  irAPagina(10);
+  actual = 10;
+  mostrarPagina();
 }
 
 function congregarme() {
-  irAPagina(12);
+  actual = 12;
+  mostrarPagina();
 }
 
 function abrirMapa() {
   window.open("https://maps.app.goo.gl/1vkNxkM8aYV7ugtG9", "_blank");
 }
-
-window.addEventListener("popstate", function(event) {
-  if (event.state && typeof event.state.pagina === "number") {
-    actual = event.state.pagina;
-    mostrarPagina();
-  }
-});
-
-history.replaceState(
-  { pagina: actual },
-  "",
-  "#pagina-" + actual
-);
 
 mostrarPagina();
