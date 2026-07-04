@@ -82,35 +82,35 @@ const paginas = [
     final: true
   },
   {
-  titulo: "Conocer más sobre Jesús",
-  texto: [
-    "Jesús no vino para crear una religión, vino para acercarnos a Dios.",
-    "Él conoce tus luchas, tus heridas y tus preguntas.",
-    "La Biblia dice: Porque de tal manera amó Dios al mundo, que ha dado a su Hijo unigénito. Juan 3:16"
-  ],
-  seccionJesus: true
-},
-{
-  titulo: "Una nueva vida",
-  texto: [
-    "Jesús murió y resucitó para darte una nueva vida.",
-    "No necesitas saberlo todo para acercarte a Él.",
-    "Puedes comenzar hablándole con tus propias palabras hoy mismo.",
-    "Dile a Dios lo que sientes, lo que necesitas y lo que hay en tu corazón."
-  ],
-  finJesus: true
-},
-{
-  titulo: "¿Dónde puedo congregarme?",
-  texto: [
-    "Arca de Noé - Iglesia para la Familia",
-    "Dirección: Barrio 30 de Agosto, a una cuadra de la Av. Moscú.",
-    "Horarios:",
-    "Sábado: 19:30 - 21:30",
-    "Domingo: 08:00 - 11:30 / 18:00 - 20:30"
-  ],
-  mapa: true
-}
+    titulo: "Conocer más sobre Jesús",
+    texto: [
+      "Jesús no vino para crear una religión, vino para acercarnos a Dios.",
+      "Él conoce tus luchas, tus heridas y tus preguntas.",
+      "La Biblia dice: Porque de tal manera amó Dios al mundo, que ha dado a su Hijo unigénito. Juan 3:16"
+    ],
+    jesus1: true
+  },
+  {
+    titulo: "Una nueva vida",
+    texto: [
+      "Jesús murió y resucitó para darte una nueva vida.",
+      "No necesitas saberlo todo para acercarte a Él.",
+      "Puedes comenzar hablándole con tus propias palabras hoy mismo.",
+      "Dile a Dios lo que sientes, lo que necesitas y lo que hay en tu corazón."
+    ],
+    finJesus: true
+  },
+  {
+    titulo: "¿Dónde puedo congregarme?",
+    texto: [
+      "Arca de Noé - Iglesia para la Familia",
+      "Dirección: Barrio 30 de Agosto, a una cuadra de la Av. Moscú.",
+      "Horarios:",
+      "Sábado: 19:30 - 21:30",
+      "Domingo: 08:00 - 11:30 / 18:00 - 20:30"
+    ],
+    mapa: true
+  }
 ];
 
 let actual = 0;
@@ -174,18 +174,19 @@ function mostrarPagina() {
   if (actual === 0) {
     boton.textContent = "Comenzar";
     boton.style.display = "inline-block";
-  } else if (paginas[actual].final) {
+  } else if (paginas[actual].final || paginas[actual].finJesus || paginas[actual].mapa) {
     boton.style.display = "none";
-  } else if (paginas[actual].finJesus || paginas[actual].mapa) {
-  boton.style.display = "none";
-}
+  } else {
     boton.textContent = "➡️ Continuar";
     boton.style.display = "inline-block";
   }
 }
 
 boton.onclick = function() {
-  if (actual < 9) {
+  if (paginas[actual].jesus1) {
+    actual = 11;
+    mostrarPagina();
+  } else if (actual < 9) {
     actual++;
     mostrarPagina();
   }
