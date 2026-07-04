@@ -1,4 +1,4 @@
-const paginas = [
+const paginas = [alert("SCRIPT NUEVO CARGADO - VERSION 200");
   {
     titulo: "❤️ Dos minutos para ti",
     texto: ["Antes de continuar con tu día...", "Regálate dos minutos.", "Respira.", "Y lee estas palabras con calma."]
